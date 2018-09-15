@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<script>
+		// 1 constructor属性的使用
+		function CreateObj (name) {
+			this.name = name;
+		}
+		CreateObj.prototype.sayHi = function () {
+			console.log('这是sayHi');
+		};
+
+		// constructor - 构造器(指向构造函数本身)
+		//   这个属性实际上是给通过构造函数创建的对象准备的。
+		//   作用：用于描述构造函数和某个对象之间关系的一种方式。
+		// console.log(CreateObj.prototype);
+		// console.log(CreateObj.prototype.constructor);
+
+		var c1 = new CreateObj('jack');
+		console.log(c1.constructor);
+		// console.log(c1.constructor === CreateObj); // true
+		// console.log(c1.constructor === Array); // false
+
+		// var arr = [1, 2, 3];
+		// console.log(arr instanceof Array); // true
+		// console.log(arr instanceof Object); // true
+		// console.log(arr.constructor === Array); // true
+		// console.log(arr.constructor === Object); // false
+
+
+		// 2 prototype属性设置的第二种方式
+		// function CreateObj (name) {
+		// 	this.name = name;
+		// }
+		console.log(CreateObj.prototype); // 原始的原型对象，内部具有constructor属性
+		CreateObj.prototype = { // 赋值后，原始的原型对象被覆盖，导致不存在constructor属性，需要进行手动设置
+			sayHi1 : function () {
+				console.log('这是sayHi');
+			},
+			sayHi2 : function () {
+				console.log('这是sayHi');
+			},
+			sayHi3 : function () {
+				console.log('这是sayHi');
+			},
+			constructor : CreateObj
+		};
+		console.log(CreateObj.prototype);
+
+		var c1 = new CreateObj('jack');
+		console.log(c1);
+		c1.sayHi1();
+		c1.sayHi2();
+		c1.sayHi3();
+		console.log(c1.constructor);
+		console.log(c1.constructor === CreateObj); // true
+
+
+
+	</script>
+</body>
+</html>

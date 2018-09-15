@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    table {
+      width: 600px;
+      border-collapse: collapse;
+    }
+    
+    thead {
+      background-color: #e5e5e5;
+    }
+    
+    tbody {
+      text-align: center;
+    }
+    
+    tbody td {
+      width: 165px;
+      height: 19px;
+    }
+  </style>
+</head>
+<body>
+
+<!--放置表格的位置-->
+<div id="box">
+
+
+</div>
+<script src="jquery-1.12.4.min.js"></script>
+<script>
+  //------------------------- 创建表格数据-----------------------------
+  //表头的数据 创建th使用
+  var tableDatas  = {
+    head : ["姓名", "科目", "成绩", "操作"],
+    body : [
+      {"id" : 1023303211, "name" : "张三1", "subject" : "语文1", "score" : 99.8},
+      {"id" : 1026303232, "name" : "张三2", "subject" : "语文2", "score" : 80.8},
+      {"id" : 1025013253, "name" : "张三3", "subject" : "语文3", "score" : 70.8},
+      {"id" : 1026413224, "name" : "张三4", "subject" : "语文4", "score" : 100},
+      {"id" : 1023411265, "name" : "张三5", "subject" : "语文5", "score" : 60},
+      {"id" : 1023401206, "name" : "张三6", "subject" : "语文6", "score" : 70},
+      {"id" : 1023003297, "name" : "张三7", "subject" : "语文7", "score" : 89.8}
+    ]
+  };
+  
+  // 1 明确数据结构，对象中具有两个属性head与body
+  function TableControl (options) {
+    this.head = options.datas.head;
+    this.body = options.datas.body;
+    this.container = options.container;
+  }
+  TableControl.prototype = {
+    constructor : TableControl,
+    init : function () {
+      var str = '';
+      str += '<table border="1"><thead><tr>';
+      for (var i = 0; i < this.head.length; i++) {
+        str += '<th>' + this.head[i] + '</th>';
+      }
+      str += '</tr></thead><tbody>';
+
+      var k;
+      for (i = 0; i < this.body.length; i++) {
+        str += '<tr data-id="' + this.body[i].id + '">';
+        for (k in this.body[i]) {
+          if (k === 'id') {continue;}
+          str += '<td>' + this.body[i][k] + '</td>';
+        }
+        str += '<td><a class="del" href="javascript:;">删除</a></td>'
+        str += '</tr>';
+      }
+
+      str += '</tbody></table>';
+      this.container.html(str);
+    },
+    delData : function(id) {
+      // 功能为根据下标，删除对应元素
+      this.body.filter(function (ele, index, arr) {
+        if (ele.id === id) {
+          arr.splice(index, 1);
+        }
+      });
+    }
+  };
+
+  // 创建结构操作对象与数据控制对象
+  var tc = new TableControl({
+    container : $('#box'),
+    datas : tableDatas
+  });
+
+  // 1 调用init初始化结构
+  tc.init();
+  // 2 点击按钮时，调用delData，删除对应数据，并重置结构
+  $('#box').on('click', '.del', function () {
+    var xiaBiao = $(this).parents('tr').data('id');
+    tc.delData(xiaBiao);
+    tc.init();
+  });
+
+
+</script>
+
+
+</body>
+
+</html>

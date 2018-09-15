@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    table {
+      width: 600px;
+      border-collapse: collapse;
+    }
+    
+    thead {
+      background-color: #e5e5e5;
+    }
+    
+    tbody {
+      text-align: center;
+    }
+    
+    tbody td {
+      width: 165px;
+      height: 19px;
+    }
+  </style>
+</head>
+<body>
+
+<!--放置表格的位置-->
+<div id="box">
+  
+
+</div>
+<script src="jquery-1.12.4.min.js"></script>
+<script>
+  //------------------------- 创建表格数据-----------------------------
+  var tableDatas = {
+    // 表头的数据 创建th使用
+    head : ["姓名", "科目", "成绩", "操作"],
+    // tbody的数据，用于创建tr和td
+    body : [
+      {"id" : 1023303211, "name" : "张三1", "subject" : "语文1", "score" : 99.8},
+      {"id" : 1026303232, "name" : "张三2", "subject" : "语文2", "score" : 80.8},
+      {"id" : 1025013253, "name" : "张三3", "subject" : "语文3", "score" : 70.8},
+      {"id" : 1026413224, "name" : "张三4", "subject" : "语文4", "score" : 100},
+      {"id" : 1023411265, "name" : "张三5", "subject" : "语文5", "score" : 60},
+      {"id" : 1023401206, "name" : "张三6", "subject" : "语文6", "score" : 70},
+      {"id" : 1023003297, "name" : "张三7", "subject" : "语文7", "score" : 89.8}
+    ]
+  };
+
+  // 使用面向对象操作的基本步骤：
+  //  1 明确功能：创建表格，删除数据
+  //  2 设计工具的使用方式：
+  //  3 设置功能
+
+
+  function CreateTool (datas) {
+    // 多个方法中需要使用的相同数据，为了方便操作，可以设置为对象的属性
+    // 好处：不需要每次调用方法时都进行参数传入了，使用较为方便
+    this.datas = datas;
+  }
+  CreateTool.prototype.create = function () {
+    console.log(this.datas);
+  };
+  CreateTool.prototype.delData = function () {
+    console.log(this.datas);
+  };
+
+
+  // 设计好的面向对象操作方式：
+  var tools = new CreateTool(tableDatas);
+  tools.create(); // 创建了表格
+  tools.delData(); // 删除了数据
+
+  </script>
+
+</body>
+
+</html>

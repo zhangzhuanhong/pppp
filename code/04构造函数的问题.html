@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var obj = {
+			sayHi : function () {
+			console.log('这是sayHi方法');
+			},
+			sayHehe : function () {
+				console.log('这是sayHehe方法');
+			}
+		};
+		function CreateObj (name, age) {
+			this.name = name;
+			this.age = age;
+			this.sayHi = obj.sayHi;
+			this.sayHehe = obj.sayHehe;
+		}
+		var obj1 = new CreateObj('jack', 18);
+		var obj2 = new CreateObj('rose', 21);
+
+
+		// 1 普通的构造函数问题
+		// 上面创建了两个对象，这两个对象的属性值是否相同，是正常的。
+		//	也具有一个方法，方法的功能是相同的，但不是同一个函数值
+
+		// 我们发现多个对象的方法时不同的函数值，占用了不必要的空间
+		// console.log(obj1.sayHi == obj2.sayHi); // false
+
+		// 修改方式：利用命名函数保存方法值，实现复用效果
+		// console.log(obj1.sayHi == obj2.sayHi); // true
+
+		// 2 基本修改方式的问题
+		//   - 起名难
+		//   - 书写繁琐，函数之间不具有关联性
+		//	 - (主要问题)全局的函数是window的方法，设置过多导致window的访问效率变低
+		//			- 导致所有的全局操作访问均变慢。
+
+		// 修改方式：将一个构造函数中的方法使用一个对象进行统一保存，可以减少对全局函数的使用。
+
+		var sayHi = function () {
+			console.log('这是sayHi方法');
+		}
+		var sayHe = function () {
+			console.log('这是sayHe方法');
+		}
+		var obj = {
+			sayHi: function () {
+				console.log('这是sayHi方法');
+			},
+			sayHe: function () {
+				console.log('这是sayHe方法');
+			}
+		};
+		function CreateObj (name, age) {
+			this.name = name;
+			this.age = age;
+			this.sayHi = obj.sayHi;
+			this.sayHe = obj.sayHi;
+			// this.sayHi = function () {
+			// 	console.log('这是sayHi方法');
+			// }
+		}
+		var obj1 = new CreateObj('jack', 18);
+		var obj2 = new CreateObj('rose', 21);
+		console.log(obj1, obj2);
+
+	</script>
+</body>
+</html>

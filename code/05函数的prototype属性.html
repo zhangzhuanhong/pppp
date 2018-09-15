@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 1 基本使用方式
+		// prototype - 原型
+		//  prototype是函数的属性，这个属性是给构造函数使用准备。
+		//  作用：prototype属性的值默认是一个对象，用于保存构造函数中所有的方法值, 设置的方法可以被创建的对象使用。
+
+		function CreateObj (name, age) {
+			this.name = name;
+			this.age = age;
+		}
+		console.log(CreateObj.prototype); 
+		CreateObj.prototype.sayHi = function () {
+			console.log('这是sayHi方法');
+		};
+		CreateObj.prototype.sayHehe = function () {
+			console.log('这是sayHehe方法');
+		};
+		// var c1 = new CreateObj('jack', 18);
+		// console.log(c1.name);
+		// c1.sayHi();
+		// c1.sayHehe();
+
+		// 2 为什么对象可以使用方法
+
+		// 通过观察发现，对象中不仅具有设置的name和age属性，还具有__proto__这个属性
+		// 这个属性是new给对象设置的。
+		// console.log(c1);
+
+		// 又发现设置给CreateObj.prototype的方法也出现在了__proto__属性中，推测这两个对象是同一个对象
+		// console.log(CreateObj.prototype === c1.__proto__); // true
+
+		// 对象属性访问的基本规则：
+		//  1 首先查找对象自身，如果有，使用。
+		//  2 如果没有，查找对象的__proto__属性，如果有，使用。
+		// c1.sayHi = function () {
+		// 	console.log('这是c1内部的sayHi');
+		// };
+		// c1.sayHi();
+
+		// function CreateObj (name, age) {
+		// 	this.name = name;
+		// 	this.age = age;
+		// }
+		// console.log(CreateObj.prototype);
+		// var c1 = new CreateObj('jeck', 19);
+
+
+	</script>
+</body>
+</html>

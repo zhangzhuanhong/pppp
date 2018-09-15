@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function CreateObj (name) {
+			this.name = name;
+		}
+		CreateObj.prototype.sayHi = function () {
+			console.log('这是sayHi');
+		};
+
+		var c1 = new CreateObj('jack');
+
+		实例对象： 通过构造函数创建的对象，具有__proto__属性
+		构造函数： 用于创建实例对象使用，具有prototype
+		// 基本概念：
+		//  - 实例对象：通过构造函数创建的对象，都具有__proto__属性，指向构造函数的原型对象。
+		//  - 构造函数：用于创建实例对象使用，都具有prototype属性，指向原型对象
+		//  - 原型对象：具有一个constructor属性，指向构造函数，用于描述构造函数和实例对象之间关系的方式。
+
+		// 通过图示描述：
+		//  - 见图例
+	</script>
+</body>
+</html>

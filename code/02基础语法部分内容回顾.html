@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 基本数据类型：string number boolean null undefined
+		// 复杂数据类型：对象(广义的) - Object Array Math date String Function
+
+		// 1 基本包装类型对象
+		//   - new String() new Number() new Boolean()
+		//   - js为了开发者方便对基本数据类型进行操作，在我们使用属性和方法时帮我们创建了一个对象进行操作
+
+		/*// 这是我们书写的代码：
+		var str = 'abc';
+		str.length;
+
+		// js自动完成的操作：
+		var temp = new String('abc');   
+		temp.length;
+		temp = null; // 使用完毕，对象会自动清除*/
+
+		// 2 基本数据类型和复杂数类型的区别：
+		//  - 2.1 保存的数据个数不同
+		//  - 2.2 内存中的保存方式不同：
+		//    - 基本数据类型在内存单元中保存的是具体值。
+		//		- 复杂数据类型在内存单元中保存的是具体值的指针(地址、引用)
+		//  - 复制后的结果不同
+		//		- 复制操作实际上是对内存单元中值的拷贝操作。
+		//			- 基本数据类型拷贝前后，两个值没有关联
+		//		  - 复杂数据类型拷贝前后，两个值是同一个值
+		// var num1 = 100;
+		// var num2 = num1;
+		// num1++;
+		// console.log(num1, num2);
+
+		// var arr = ['a', 'b', 'c'];
+		// var arr1 = arr;
+		// arr[0] = 'z';
+		// console.log(arr, arr1);
+
+		// 小结：对于复杂数据类型不能使用赋值的方式进行直接拷贝操作，达不到拷贝的目的。
+		//   对复杂数据类型的拷贝操作：
+		//     1 遍历拷贝(这种拷贝方式称为浅拷贝，只能拷贝一层)
+		/*var arr = ['a', 'b', 'c', [1, 2, 3]];
+		var result = [];
+		for (var i = 0; i < arr.length; i++) {
+			result.push(arr[i]);
+		}
+		console.log(arr, result);
+		arr[0] = 'z';
+		console.log(arr, result);*/
+		//2 利用数组方法进行拷贝操作(浅拷贝,concat,slice)
+		// var arr = ['a', 'b', 'c'];
+		// var result = arr.slice();
+		// console.log(arr, result);
+		// arr[0] = 'z';
+		// console.log(arr, result);
+
+		// - 2.3 函数参数的值传递
+		//   - 函数的参数传递方式：将实参值赋值给形参。
+		/*function fun (num, arr) {
+			// num = num1; // 基本数据类型的复制操作
+			num++;
+		}
+		var num1 = 100;
+		fun(num1);
+
+		console.log(num1);*/
+		// 复杂数据类型的值传递:
+		// function fun (arr) {
+		// 	// arr = arr1; // 复杂数据类型的复制操作，arr和arr1就是同一个值
+		// 	arr[0] = 100;
+		// 	// return arr; // 返回值不需要设置，设置了也和实参是同一个值
+		// }
+		// var arr1 = [1, 2, 3];
+		// fun(arr1);
+
+		// console.log(arr1);
+
+		//  小结论：如果实参为基本数据类型，进行操作后必须设置返回值返回。
+		//			如果实参为复杂数据类型，进行操作后不需要设置返回值。
+
+
+		// 示例：js内置的sort功能的演示
+		// var arr = [3, 2, 1];
+		// var result = arr.sort();
+		// arr[2] = 100;
+		// console.log(result);
+		// console.log(arr);
+
+	</script>
+</body>
+</html>

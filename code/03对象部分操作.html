@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// 对象操作：
+		//  对象根据功能使用分为两类：
+		//   1 作为数据存储使用:
+		//			数组：有序的数据存储方式。
+		//			对象：无序的数据存储方式。
+
+		//   2 作为工具使用
+		//		- 内置工具(内置对象操作)
+		//			- Array:
+		//				- push() pop() shift() unshift() - 可以从数组两端进行修改操作
+		//				- splice() - 可以从数组中任意位置进行修改操作
+		//				- slice() indexOf() sort() reverse() join()
+		//      - String：
+		//				- split() - 与数组的结合操作
+		//				- slice() 
+		//			- Math:
+		//				- Math.ceil() Math.floor() Math.random()
+
+		//    - 自定义工具(自定义对象操作)
+		//			- 单个对象设置
+		//				- new Object()
+		//				- {}
+		//					- 属性操作方式：
+		//						- obj.name
+		//						- obj['name']
+		//					- for..in
+		//			- 多个对象设置
+		//				- 工厂模式(使用函数进行多个对象创建操作)
+		//			  - 构造函数
+		//					- 使用的注意点
+		//						- 必须加new
+		//						- 命名首字母大写
+		//						- 构造函数内使用this添加属性和方法
+		//					- new的作用：
+		//						- 创建一个对象
+		//						- 将this修改为这个对象
+		//						- 返回对象
+		//						- 调用构造函数
+		//工厂模式
+		// function create (name, age) {
+		// 	var obj = new Object();  // 创建对象
+		// 	obj.name = name; //给对象添加属性
+		// 	obj.age = age;
+		// 	return obj; // 返回对象
+		// } 
+		// var str = new create('jeck', 18);
+		// var s = new create('jack',19);
+		// console.log(str, s);
+		function Create(name, age) {
+			this.name = name;
+			this.age = age;
+			this.sayHi = function () {
+				console.log('这是Create的方法');
+			}
+		}
+		var str = new Create('less', 19);
+		console.log(str);
+	</script>
+</body>
+</html>
